@@ -1,0 +1,1 @@
+My name is Shakhram and I am a computer science major. I am interested in full stack development ever since I participated in a bootcamp that taught JS, CSS, HTML, React. My hobbies include skating and photography.
