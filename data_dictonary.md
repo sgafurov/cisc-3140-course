@@ -68,27 +68,27 @@ CREATE TABLE IF NOT EXISTS "alldata"(
 # SQL Scripts
 
 ## to create the alldata table
-### create_alldata.sql
+create_alldata.sql
 
 ## to create the cars table
-### create_cars.sql
+create_cars.sql
 
 ## to create the car_score table
-### create_car_score.sql
+create_car_score.sql
 
 ## to create the initial judges table
-### create_judges.sql
+create_judges.sql
 
 ## to create the add the extra columns to the judges table
-### alter_judges.sql
+alter_judges.sql
 
 ## to update the judges table with calculated data
-### update_judges.sql
+update_judges.sql
 
 # CSV Outputs
 
 ## to create extract1.csv (outputs all cars with ranking)
-### rank_scores.sql
+rank_scores.sql
 
 ## to create extract2.csv (outputs top 3 cars per car make)
-### top3.sql
+top3.sql
