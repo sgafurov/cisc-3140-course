@@ -1,6 +1,6 @@
-#Table Schema
+# Table Schema
 
-##cars
+## cars
 CREATE TABLE cars(
     Car_ID INT PRIMARY KEY,
     Year TEXT,
@@ -10,7 +10,7 @@ CREATE TABLE cars(
     Name TEXT
 );
 
-##judges
+## judges
 CREATE TABLE judges(
     Judge_ID INT,
     Judge_Name TEXT, 
@@ -21,13 +21,13 @@ CREATE TABLE judges(
     avg_speed FLOAT
 );
 
-##car_score
+## car_score
 CREATE TABLE car_score(
     car_id INTEGER NOT NULL PRIMARY KEY,
     score INTEGER
 );
 
-##alldata (this table is populated with all of the data from the csv file)
+## alldata (this table is populated with all of the data from the csv file)
 CREATE TABLE IF NOT EXISTS "alldata"(
   "Timestamp" TEXT,
   "Email" TEXT,
@@ -65,30 +65,30 @@ CREATE TABLE IF NOT EXISTS "alldata"(
   "Mods_Overall" INT
 );
 
-#SQL Scripts
+# SQL Scripts
 
-##to create the alldata table
-###create_alldata.sql
+## to create the alldata table
+### create_alldata.sql
 
-##to create the cars table
-###create_cars.sql
+## to create the cars table
+### create_cars.sql
 
-##to create the car_score table
-###create_car_score.sql
+## to create the car_score table
+### create_car_score.sql
 
-##to create the initial judges table
-###create_judges.sql
+## to create the initial judges table
+### create_judges.sql
 
-##to create the add the extra columns to the judges table
-###alter_judges.sql
+## to create the add the extra columns to the judges table
+### alter_judges.sql
 
-##to update the judges table with calculated data
-###update_judges.sql
+## to update the judges table with calculated data
+### update_judges.sql
 
-#CSV Outputs
+# CSV Outputs
 
-##to create extract1.csv (outputs all cars with ranking)
-###rank_scores.sql
+## to create extract1.csv (outputs all cars with ranking)
+### rank_scores.sql
 
-##to create extract2.csv (outputs top 3 cars per car make)
-###top3.sql
+## to create extract2.csv (outputs top 3 cars per car make)
+### top3.sql
