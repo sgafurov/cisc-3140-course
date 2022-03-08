@@ -1,0 +1,4 @@
+CREATE TABLE car_score(
+car_id INTEGER NOT NULL PRIMARY KEY,
+score INTEGER
+);

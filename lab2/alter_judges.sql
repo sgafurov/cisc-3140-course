@@ -1,0 +1,14 @@
+ALTER TABLE judges
+ADD COLUMN num_cars INT;
+
+ALTER TABLE judges
+ADD COLUMN start FLOAT;
+
+ALTER TABLE judges
+ADD COLUMN end FLOAT;
+
+ALTER TABLE judges
+ADD COLUMN duration INT;
+
+ALTER TABLE judges
+ADD COLUMN avg_speed FLOAT;
