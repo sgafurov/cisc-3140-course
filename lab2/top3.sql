@@ -1,6 +1,7 @@
 .output lab2/extract2.csv
 .mode csv
 .headers on 
+
 -- CREATE TABLE temp as 
 -- SELECT
 -- DENSE_RANK() OVER(ORDER BY cs.score DESC) AS rank,
@@ -92,6 +93,8 @@
 -- WHERE make = 'Volvo'
 -- LIMIT 3;
 
+-- drop table temp;
+
 SELECT rank,
     car_id,
     year,
@@ -107,7 +110,7 @@ FROM (
                 ORDER BY total DESC
             ) AS rank,
             *
-        from (
+        FROM (
                 SELECT c.car_id,
                     c.year,
                     c.make,
@@ -122,8 +125,6 @@ FROM (
                 ORDER BY total DESC
             )
     )
-where make_rank < 4;
-
--- drop table temp;
+WHERE make_rank < 4;
 
 .output
