@@ -1,4 +1,4 @@
-.output extract1.csv
+.output lab2/extract1.csv
 .mode csv
 .headers on
 
