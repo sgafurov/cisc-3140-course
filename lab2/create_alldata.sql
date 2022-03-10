@@ -1,5 +1,5 @@
 .mode csv
-.import data.csv alldata
+.import data_lab1/data.csv alldata
 .output alldata.sql
 .dump
 .output
