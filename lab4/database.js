@@ -16,7 +16,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             "Year" TEXT,
             "Make" TEXT,
             "Model" TEXT,
-            "Car_ID" INT,
+            "Car_ID" PRIMARY KEY INT,
             "Judge_ID" INT,
             "Judge_Name" TEXT,
             "Racer_Turbo" INT,

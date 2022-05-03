@@ -2,6 +2,10 @@ const express = require('express')
 const app = express()
 const db = require("./database.js")
 
+var bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -10,146 +14,131 @@ app.get('/', (req, res) => {
     ejs.r
 })
 
-// Display results of select all - I.e., all cars present in the CSV file, all the car owners contact information, showing results per class')
+// DISPLAY RESULTS OF SELECT ALL - I.e., all cars present in the CSV file, all the car owners contact information, showing results per class')
 app.get("/api/cars/all", (req, res, next) => {
     var sql = "select * from records"
     var params = []
     db.all(sql, params, (err, rows) => {
         if (err) {
-          res.status(400).json({"error":err.message});
-          return;
+            res.status(400).json({ "error": err.message });
+            return;
         }
         res.json({
-            "message":"success",
-            "data":rows
+            "message": "success",
+            "data": rows
         })
-      });
+    });
 });
 
-// Display one specific record
+// DISPLAY ONE SPECIFIC RECORD
 app.get("/api/cars/id/:car_id", (req, res, next) => {
     var sql = "select * from records where car_id = ?"
     var params = [req.params.car_id]
     db.all(sql, params, (err, row) => {
         if (err) {
-          res.status(400).json({"error":err.message});
-          return;
+            res.status(400).json({ "error": err.message });
+            return;
         }
         res.json({
-            "message":"success",
-            "data":row
+            "message": "success",
+            "data": row
         })
-      });
+    });
 });
 
-// Display a list of records
+// DISPLAY LIST OF RECORDS
 app.get("/api/cars/make/:make", (req, res, next) => {
     var sql = "select * from records where make = ?"
     var params = [req.params.make]
     db.all(sql, params, (err, rows) => {
         if (err) {
-          res.status(400).json({"error":err.message});
-          return;
+            res.status(400).json({ "error": err.message });
+            return;
         }
         res.json({
-            "message":"success",
-            "data":rows
+            "message": "success",
+            "data": rows
         })
-      });
+    });
 });
 
+// INSERT A SINGLE NEW DATA RECORD
+app.post("/api/cars", (req, res, next) => {
+    var errors = []
+    if (!req.body.car_id) {
+        errors.push("No car id specified");
+    }
 
-//////////////////////////////////////////////////////////////////////////////////////////
+    var getSql = "select * from records where car_id = ?"
+    var getParams = [req.body.car_id]
+    var doesExist = db.run(getSql, getParams, (err, row) => {
+        if (err) {
+            return false
+        } else if (row == undefined) {
+            return false
+        } else {
+            return true
+        }
+    });
 
-//http://localhost:3000/owners?name=hector
-app.get('/owners', (req, res) => {
-    const name = req.query.name
-    res.send(`Display a single record. ownerName = ${name}`)
-})
-// //http://localhost:3000/owners/:name/:year
-// app.get('/owners/:name/:year', (req, res) => {
-//     const name = req.params.name
-//     const year = req.params.year
-//     res.send(`Display a single record. ownerName = ${name}. carYear = ${year}`)
-// })
+    if (doesExist) {
+        errors.push("A car with this id already exists");
+    }
+    if (errors.length) {
+        res.status(400).json({ "error": errors.join(",") });
+        return;
+    }
 
+    var data = {
+        timestamp: req.body.timestamp,
+        email: req.body.email,
+        name: req.body.name,
+        year: req.body.year,
+        make: req.body.make,
+        model: req.body.model,
+        car_id: req.body.car_id,
+        judge_id: req.body.judge_id,
+        judge_name: req.body.judge_name,
+        racer_turbo: req.body.racer_turbo,
+        racer_supercharged: req.body.racer_supercharged,
+        racer_performance: req.body.racer_performance,
+        racer_horsepower: req.body.racer_horsepower,
+        car_overall: req.body.car_overall,
+        engine_modifications: req.body.engine_modifications,
+        engine_performance: req.body.engine_performance,
+        engine_chrome: req.body.engine_chrome,
+        engine_detailing: req.body.engine_detailing,
+        engine_cleanliness: req.body.engine_cleanliness,
+        body_frame_undercarriage: req.body.body_frame_undercarriage,
+        body_frame_suspension: req.body.body_frame_suspension,
+        body_frame_chrome: req.body.body_frame_chrome,
+        body_frame_detailing: req.body.body_frame_detailing,
+        body_frame_cleanliness: req.body.body_frame_cleanliness,
+        mods_paint: req.body.mods_paint,
+        mods_body: req.body.mods_body,
+        mods_wrap: req.body.mods_wrap,
+        mods_rims: req.body.mods_rims,
+        mods_interior: req.body.mods_interior,
+        mods_other: req.body.mods_other,
+        mods_ice: req.body.mods_ice,
+        mods_aftermarket: req.body.mods_aftermarket,
+        mods_wip: req.body.mods_wip,
+        mods_overall: req.body.mods_overall
+    }
 
-app.post('/input-form', (req, res) => {
-    res.send('Insert new record')
-})
+    var sql = 'INSERT INTO records (Timestamp,Email,Name,Year,Make,Model,Car_ID,Judge_ID,Judge_Name,Racer_Turbo,Racer_Supercharged,Racer_Performance,Racer_Horsepower,Car_Overall,Engine_Modifications,Engine_Performance,Engine_Chrome,Engine_Detailing,Engine_Cleanliness,Body_Frame_Undercarriage,Body_Frame_Suspension,Body_Frame_Chrome,Body_Frame_Detailing,Body_Frame_Cleanliness,Mods_Paint,Mods_Body,Mods_Wrap,Mods_Rims,Mods_Interior,Mods_Other,Mods_ICE,Mods_Aftermarket,Mods_WIP,Mods_Overall) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    var params = [data.timestamp, data.email, data.name, data.year, data.make, data.model, data.car_id, data.judge_id, data.judge_name, data.racer_turbo, data.racer_supercharged, data.racer_performance, data.racer_horsepower, data.car_overall, data.engine_modifications, data.engine_performance, data.engine_chrome, data.engine_detailing, data.engine_cleanliness, data.body_frame_undercarriage, data.body_frame_suspension, data.body_frame_chrome, data.body_frame_detailing, data.body_frame_cleanliness, data.mods_paint, data.mods_body, data.mods_wrap, data.mods_rims, data.mods_interior, data.mods_other, data.mods_ice, data.mods_aftermarket, data.mods_wip, data.mods_overall]
 
-//POST : insert one record, multiple records at same time, and PUT : updating current one
-
-app.post('/api/cars', (req, res) => {
-    const email = req.query.email
-    const owner_name = req.query.owner_name
-    const year = req.query.year
-    const make = req.query.make
-    const model = req.query.model
-    const car_id = req.query.car_id
-    const judge_id = req.query.judge_id
-    const judge_name = req.query.judge_name
-    const racer_turbo = req.query.racer_turbo
-    const racer_supercharged = req.query.racer_supercharged
-    const racer_performance = req - query.racer_performance
-    const racer_horsepower = req.query.racer_horsepower
-    const car_overall = req.query.car_overall
-    const engine_modifications = req.query.engine_modifications
-    const engine_performance = req.query.engine_performance
-    const engine_chrome = req.query.engine_chrome
-    const engine_detailing = req.query.engine_detailing
-    const engine_cleanliness = req.query.engine_cleanliness
-    const body_frame_undercarriage = req.query.body_frame_undercarriage
-    const body_frame_suspension = req.query.body_frame_suspension
-    const body_frame_chrome = req.query.body_frame_chrome
-    const body_frame_detailing = req.query.body_frame_detailing
-    const body_frame_cleanliness = req.query.body_frame_cleanliness
-    const mods_paint = req.query.mods_paint
-    const mods_body = req.query.mods_body
-    const mods_wrap = req.query.mods_wrap
-    const mods_rims = req.query.mods_rims
-    const mods_interior = req.query.mods_interior
-    const mods_other = req.query.mods_other
-    const mods_ice = req.query.mods_ice
-    const mods_aftermarket = req.query.mods_aftermarket
-    const mods_wip = req.query.mods_wip
-    const mods_overall = req.query.mods_overall
-
-    res.send({
-        'email': email,
-        'owner_name': owner_name,
-        'year': year,
-        'make': make,
-        'model': model,
-        'car_id': car_id,
-        'judge_id': judge_id,
-        'judge_name': judge_name,
-        'racer turbo': racer_turbo,
-        'racer_supercharged': racer_supercharged,
-        'racer_performance': racer_performance,
-        'racer_horsepower': racer_horsepower,
-        'car_overall': car_overall,
-        'engine_modifications': engine_modifications,
-        'engine_performance': engine_performance,
-        'engine_chrome': engine_chrome,
-        'engine_ detailing': engine_detailing,
-        'engine_cleanliness': engine_cleanliness,
-        'body_frame_undercarriage': body_frame_undercarriage,
-        'body_frame_suspension': body_frame_suspension,
-        'body_frame_chrome': body_frame_chrome,
-        'body_frame_detailing': body_frame_detailing,
-        'body_frame_cleanliness': body_frame_cleanliness,
-        'mods_paint': mods_paint,
-        'mods_body': mods_body,
-        'mods_wrap': mods_wrap,
-        'mods_rims': mods_rims,
-        'mods_interior': mods_interior,
-        'mods_other': mods_other,
-        'mods_ice': mods_ice,
-        'mods_aftermarket': mods_aftermarket,
-        'mods_wip': mods_wip,
-        'mods_overall': mods_overall
-    })
+    db.run(sql, params, function (err, result) {
+        if (err) {
+            res.status(400).json({ "error": err.message })
+            return;
+        }
+        res.json({
+            "message": "success",
+            "data": data,
+        })
+    });
 })
 
 app.listen(3000)
