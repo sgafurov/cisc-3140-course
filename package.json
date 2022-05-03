@@ -1,0 +1,28 @@
+{
+  "name": "cisc-3140-course",
+  "version": "1.0.0",
+  "description": "# Lab 1 ## Objective: (As described in the lab pdf) This task as described focuses on the use of multi-paradigmatic programming languages to design a system that handles a basic end-to-end data analysis workflow.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devStart": "nodemon lab4/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sgafurov/cisc-3140-course.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sgafurov/cisc-3140-course/issues"
+  },
+  "homepage": "https://github.com/sgafurov/cisc-3140-course#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "sqlite3": "^5.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
