@@ -12,9 +12,9 @@ These methods are performed in server.js.
 ### /api/cars/all
 This will get all the cars in the database.
 ### /api/cars/id/:car_id
-This will get a car in the database where the car id matches the parameter.
+This will get a car in the database where the car id matches the parameter. Car id is required and must be a number.
 ### /api/cars/make/:make
-This will get all cars in the database where the car make matches the parameter.
+This will get all cars in the database where the car make matches the parameter. Make is required, is case sensitive, and must start with a capital letter.
 
 ## POST:
 ### /api/cars
