@@ -11,12 +11,12 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     res.json('welcome to the backend')
-    ejs.r
-})
+    // ejs.r
+});
 
 // DISPLAY RESULTS OF SELECT ALL - I.e., all cars present in the CSV file, all the car owners contact information, showing results per class')
 app.get("/api/cars/all", (req, res, next) => {
-    var sql = "select * from records"
+    var sql = "select * from cars"
     var params = []
     db.all(sql, params, (err, rows) => {
         if (err) {
@@ -32,7 +32,7 @@ app.get("/api/cars/all", (req, res, next) => {
 
 // DISPLAY ONE SPECIFIC RECORD
 app.get("/api/cars/id/:car_id", (req, res, next) => {
-    var sql = "select * from records where car_id = ?"
+    var sql = "select * from cars where car_id = ?"
     var params = [req.params.car_id]
     db.all(sql, params, (err, row) => {
         if (err) {
@@ -46,9 +46,9 @@ app.get("/api/cars/id/:car_id", (req, res, next) => {
     });
 });
 
-// DISPLAY LIST OF RECORDS
+// DISPLAY LIST OF cars
 app.get("/api/cars/make/:make", (req, res, next) => {
-    var sql = "select * from records where make = ?"
+    var sql = "select * from cars where make = ?"
     var params = [req.params.make]
     db.all(sql, params, (err, rows) => {
         if (err) {
@@ -67,22 +67,6 @@ app.post("/api/cars", (req, res, next) => {
     var errors = []
     if (!req.body.car_id) {
         errors.push("No car id specified");
-    }
-
-    var getSql = "select * from records where car_id = ?"
-    var getParams = [req.body.car_id]
-    var doesExist = db.run(getSql, getParams, (err, row) => {
-        if (err) {
-            return false
-        } else if (row == undefined) {
-            return false
-        } else {
-            return true
-        }
-    });
-
-    if (doesExist) {
-        errors.push("A car with this id already exists");
     }
     if (errors.length) {
         res.status(400).json({ "error": errors.join(",") });
@@ -126,7 +110,7 @@ app.post("/api/cars", (req, res, next) => {
         mods_overall: req.body.mods_overall
     }
 
-    var sql = 'INSERT INTO records (Timestamp,Email,Name,Year,Make,Model,Car_ID,Judge_ID,Judge_Name,Racer_Turbo,Racer_Supercharged,Racer_Performance,Racer_Horsepower,Car_Overall,Engine_Modifications,Engine_Performance,Engine_Chrome,Engine_Detailing,Engine_Cleanliness,Body_Frame_Undercarriage,Body_Frame_Suspension,Body_Frame_Chrome,Body_Frame_Detailing,Body_Frame_Cleanliness,Mods_Paint,Mods_Body,Mods_Wrap,Mods_Rims,Mods_Interior,Mods_Other,Mods_ICE,Mods_Aftermarket,Mods_WIP,Mods_Overall) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    var sql = 'INSERT INTO cars (Timestamp,Email,Name,Year,Make,Model,Car_ID,Judge_ID,Judge_Name,Racer_Turbo,Racer_Supercharged,Racer_Performance,Racer_Horsepower,Car_Overall,Engine_Modifications,Engine_Performance,Engine_Chrome,Engine_Detailing,Engine_Cleanliness,Body_Frame_Undercarriage,Body_Frame_Suspension,Body_Frame_Chrome,Body_Frame_Detailing,Body_Frame_Cleanliness,Mods_Paint,Mods_Body,Mods_Wrap,Mods_Rims,Mods_Interior,Mods_Other,Mods_ICE,Mods_Aftermarket,Mods_WIP,Mods_Overall) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
     var params = [data.timestamp, data.email, data.name, data.year, data.make, data.model, data.car_id, data.judge_id, data.judge_name, data.racer_turbo, data.racer_supercharged, data.racer_performance, data.racer_horsepower, data.car_overall, data.engine_modifications, data.engine_performance, data.engine_chrome, data.engine_detailing, data.engine_cleanliness, data.body_frame_undercarriage, data.body_frame_suspension, data.body_frame_chrome, data.body_frame_detailing, data.body_frame_cleanliness, data.mods_paint, data.mods_body, data.mods_wrap, data.mods_rims, data.mods_interior, data.mods_other, data.mods_ice, data.mods_aftermarket, data.mods_wip, data.mods_overall]
 
     db.run(sql, params, function (err, result) {
@@ -138,7 +122,7 @@ app.post("/api/cars", (req, res, next) => {
             "message": "success",
             "data": data,
         })
-    });
+    })
 })
 
 app.listen(3000)

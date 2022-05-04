@@ -9,14 +9,14 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
         throw err
     } else {
         console.log('Connected to the SQLite database.')
-        db.run(`CREATE TABLE IF NOT EXISTS records (
+        db.run(`CREATE TABLE cars (
             "Timestamp" TEXT,
             "Email" TEXT,
             "Name" TEXT,
             "Year" TEXT,
             "Make" TEXT,
             "Model" TEXT,
-            "Car_ID" PRIMARY KEY INT,
+            "Car_ID" INT PRIMARY KEY ,
             "Judge_ID" INT,
             "Judge_Name" TEXT,
             "Racer_Turbo" INT,
@@ -47,10 +47,10 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             )`,
             (err) => {
                 if (err) {
-                    // Table already created
+                    console.log(err.message)
                 } else {
                     // Table just created, creating some rows
-                    var insert = 'INSERT INTO records (Timestamp,Email,Name,Year,Make,Model,Car_ID,Judge_ID,Judge_Name,Racer_Turbo,Racer_Supercharged,Racer_Performance,Racer_Horsepower,Car_Overall,Engine_Modifications,Engine_Performance,Engine_Chrome,Engine_Detailing,Engine_Cleanliness,Body_Frame_Undercarriage,Body_Frame_Suspension,Body_Frame_Chrome,Body_Frame_Detailing,Body_Frame_Cleanliness,Mods_Paint,Mods_Body,Mods_Wrap,Mods_Rims,Mods_Interior,Mods_Other,Mods_ICE,Mods_Aftermarket,Mods_WIP,Mods_Overall) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+                    var insert = 'INSERT INTO cars (Timestamp, Email, Name, Year, Make, Model, Car_ID, Judge_ID, Judge_Name, Racer_Turbo, Racer_Supercharged, Racer_Performance, Racer_Horsepower, Car_Overall, Engine_Modifications, Engine_Performance, Engine_Chrome, Engine_Detailing, Engine_Cleanliness,Body_Frame_Undercarriage,Body_Frame_Suspension,Body_Frame_Chrome,Body_Frame_Detailing,Body_Frame_Cleanliness,Mods_Paint,Mods_Body,Mods_Wrap,Mods_Rims,Mods_Interior,Mods_Other,Mods_ICE,Mods_Aftermarket,Mods_WIP,Mods_Overall) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
                     db.run(insert, ['8/5/2018 14:10', 'honoland13@japanpost.jp', 'Hernando', '2015', 'Acura', 'TLX', '48', 'J04', 'Bob', '0', '0', '2', '2', '4', '4', '0', '2', '4', '4', '2', '4', '2', '2', '2', '2', '2', '0', '4', '4', '4', '6', '2', '0', '4'])
                     db.run(insert, ['8/5/2018 15:11', 'nlighterness2q@umn.edu', 'Noel', '2015', 'Jeep', 'Wrangler', '124', 'J02', 'Carl', '0', '6', '4', '2', '4', '6', '6', '4', '4', '4', '6', '6', '6', '6', '6', '4', '6', '6', '6', '6', '6', '4', '6', '4', '6'])
                     db.run(insert, ['8/5/2018 17:10', 'eguest47@microsoft.com', 'Edan', '2015', 'Lexus', 'Is250', '222', 'J05', 'Adrian', '0', '0', '0', '0', '0', '0', '0', '0', '6', '6', '6', '0', '0', '6', '6', '6', '0', '0', '0', '0', '0', '0', '0', '0', '4'])
@@ -222,6 +222,5 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             });
     }
 });
-
 
 module.exports = db
