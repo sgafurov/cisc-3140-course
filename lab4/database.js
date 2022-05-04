@@ -4,7 +4,6 @@ const DBSOURCE = "db.sqlite"
 
 let db = new sqlite3.Database(DBSOURCE, (err) => {
     if (err) {
-        // Cannot open database
         console.error(err.message)
         throw err
     } else {
@@ -49,7 +48,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                 if (err) {
                     console.log(err.message)
                 } else {
-                    // Table just created, creating some rows
+                    // Creating rows for my table
                     var insert = 'INSERT INTO cars (Timestamp, Email, Name, Year, Make, Model, Car_ID, Judge_ID, Judge_Name, Racer_Turbo, Racer_Supercharged, Racer_Performance, Racer_Horsepower, Car_Overall, Engine_Modifications, Engine_Performance, Engine_Chrome, Engine_Detailing, Engine_Cleanliness,Body_Frame_Undercarriage,Body_Frame_Suspension,Body_Frame_Chrome,Body_Frame_Detailing,Body_Frame_Cleanliness,Mods_Paint,Mods_Body,Mods_Wrap,Mods_Rims,Mods_Interior,Mods_Other,Mods_ICE,Mods_Aftermarket,Mods_WIP,Mods_Overall) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
                     db.run(insert, ['8/5/2018 14:10', 'honoland13@japanpost.jp', 'Hernando', '2015', 'Acura', 'TLX', '48', 'J04', 'Bob', '0', '0', '2', '2', '4', '4', '0', '2', '4', '4', '2', '4', '2', '2', '2', '2', '2', '0', '4', '4', '4', '6', '2', '0', '4'])
                     db.run(insert, ['8/5/2018 15:11', 'nlighterness2q@umn.edu', 'Noel', '2015', 'Jeep', 'Wrangler', '124', 'J02', 'Carl', '0', '6', '4', '2', '4', '6', '6', '4', '4', '4', '6', '6', '6', '6', '6', '4', '6', '6', '6', '6', '6', '4', '6', '4', '6'])

@@ -4,7 +4,7 @@ import axios from 'axios'
 export default function Home() {
     const getAllCars = async() => {
         try {
-            const result = await fetch(`localhost:3000/api/cars/all`)
+            const result = await fetch(`http://localhost:3000/api/cars/all`)
             console.log(result.json())
         } catch (err) {
             console.log(err.message)
