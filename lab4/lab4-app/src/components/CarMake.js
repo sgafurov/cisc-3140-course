@@ -13,10 +13,15 @@ export default function CarMake(props) {
     const fetchData = async (e) => {
         try {
             e.preventDefault()
-            const result = await fetch(`http://localhost:8080/api/cars/make/${make}`)
+            let makeArray = make.split('')
+            let makeTitleCase = makeArray[0].toUpperCase() + make.substring(1)
+            console.log(makeTitleCase)
+
+            const result = await fetch(`http://localhost:8080/api/cars/make/${makeTitleCase}`)
             const resultObj = await result.json()
             const resultObjData = resultObj.data
             setCars(resultObjData)
+
             console.log('cars = ', cars)
             console.log('cars[0] = ', cars[0])
             // navigate('/allCarsData')
