@@ -14,7 +14,7 @@ export default function CarMake(props) {
         try {
             e.preventDefault()
             let makeArray = make.split('')
-            let makeTitleCase = makeArray[0].toUpperCase() + make.substring(1)
+            let makeTitleCase = makeArray[0].toUpperCase() + make.substring(1).toLowerCase()
             console.log(makeTitleCase)
 
             const result = await fetch(`http://localhost:8080/api/cars/make/${makeTitleCase}`)
