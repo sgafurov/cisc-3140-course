@@ -1,0 +1,11 @@
+th, td {
+    border: 1px solid black;
+}
+
+th {
+    background-color: rgb(222, 222, 222);
+}
+
+td {
+    background-color: rgb(120, 156, 186);
+}
