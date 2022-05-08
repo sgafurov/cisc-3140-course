@@ -9,3 +9,37 @@ th {
 td {
     background-color: rgb(120, 156, 186);
 }
+
+button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: fit-content;
+    background-color: #e1ecf4;
+    border-radius: 3px;
+    border: 1px solid #7aa7c7;
+    box-shadow: rgba(255, 255, 255, 7) 0 1px 0 0 inset;
+    box-sizing: border-box;
+    color: #39739d;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    outline: none;
+    padding: 8px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+#nav-btn {
+    margin-top: 10px;
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+}
+
+#home-btns {
+    justify-content: space-evenly;
+}

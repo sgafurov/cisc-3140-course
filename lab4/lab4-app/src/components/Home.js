@@ -28,11 +28,13 @@ export default function Home() {
     return (
         <>
         <h1>Welcome to the Cars Database</h1>
+        <div id='home-btns'>
         <button onClick={navigateAllCars}>Get all cars data</button>
         <button onClick={navigateCarID}>Get cars via car id</button>
         <button onClick={navigateCarMake}>Get cars via car make</button>
         <button onClick={navigateNewData}>Add new car data</button>
         <button onClick={navigateUpdateData}>Update car data</button>
+        </div>
         </>
     )
 }

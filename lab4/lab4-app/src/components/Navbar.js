@@ -9,6 +9,6 @@ export default function Navbar() {
         navigate('/')
     }
     return (
-        <button onClick={navigateHome}>HOME</button>
+        <button onClick={navigateHome} id='nav-btn'>HOME</button>
     )
 }
