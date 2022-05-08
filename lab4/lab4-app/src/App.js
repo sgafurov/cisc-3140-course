@@ -7,6 +7,7 @@ import CarMake from './components/CarMake'
 import NewCar from './components/NewCar';
 import UpdateCar from './components/UpdateCar';
 import Navbar from './components/Navbar';
+import DeleteCar from './components/DeleteCar';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/car-make" element={<CarMake />} />
           <Route exact path="/new" element={<NewCar />} />
           <Route exact path="/update" element={<UpdateCar />} />
+          <Route exact path="/delete" element={<DeleteCar />} />
         </Routes>
       </Router>
     </div>

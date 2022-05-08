@@ -236,6 +236,19 @@ app.patch("/api/cars/update/:car_id", (req, res, next) => {
         });
 })
 
+app.delete("/api/cars/delete/:car_id", (req, res, next) => {
+    db.run(
+        'DELETE FROM cars WHERE car_id = ?',
+        req.params.car_id,
+        function (err, result) {
+            if (err){
+                res.status(400).json({"error": res.message})
+                return;
+            }
+            res.status(200).json({"message":"deleted", changes: this.changes})
+    });
+})
+
 app.listen(process.env.PORT || 8080, function () {
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });

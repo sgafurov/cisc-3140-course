@@ -26,6 +26,10 @@ export default function Home() {
         navigate('/update')
     }
 
+    const navigateDeleteData = () => {
+        navigate('/delete')
+    }
+
     return (
         <>
             <img src={background} id='background-img' />
@@ -38,7 +42,8 @@ export default function Home() {
                     <button onClick={navigateCarID}>Get Cars Via Car ID</button>
                     <button onClick={navigateCarMake}>Get Cars Via Car Make</button>
                     <button onClick={navigateNewData}>Add New Car Data</button>
-                    <button onClick={navigateUpdateData}>Update Car Cata</button>
+                    <button onClick={navigateUpdateData}>Update Car Data</button>
+                    <button onClick={navigateDeleteData}>Delete Car Data</button>
                 </div>
             </div>
         </>
