@@ -22,7 +22,7 @@ export default function AllCars() {
 
     return (
         <>
-            <h1>All Cars</h1>
+            <h1>Get All Cars</h1>
             {/* {cars.map(item => <h1>{item[1]}</h1>)} */}
 
             <button onClick={fetchData}>Get all cars data</button>

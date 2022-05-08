@@ -1,14 +1,11 @@
 # lab 4
 
-# Start the server
-Navigate to lab4 directory and run "npm run devStart" to get the backend up and running. This will also make connection with sqlite database, create the table, and populate it.
-
 # Access the server to make requests
-Visit http://localhost:3000 to access the backend.
+Visit http://localhost:3000/api to access the backend.
 
-# Use the React app
-First, cd into lab4/backend and execute 'npm run devStart' to make connection to the database. 
-Then, cd into lab4-app and execute 'npm run start' to start the react app.
+# How to Start The App
+First, cd into lab4/backend and execute 'npm run devStart' to get the backend up and running. This will also make connection with sqlite database, create the table, and populate it.
+Then, cd into lab4/lab4-app and execute 'npm run start' to start the react app.
 Now that both the frontend and backend are running, you can use the app.
 
 # API Endpoints

@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cors())
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     res.json('welcome to the backend')
     // ejs.r
 });

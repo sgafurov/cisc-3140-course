@@ -1,0 +1,79 @@
+#background-img {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    position: absolute;
+    object-fit: cover;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+#welcome-text {
+    margin-top: 0;
+    color: rgb(255, 255, 255);
+}
+
+#home-elements {
+    margin: 0 auto;
+    margin-top: 20px;
+    background-color: #39739d87;
+    width: fit-content;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+th, td {
+    border: 1px solid black;
+}
+
+th {
+    background-color: rgb(222, 222, 222);
+}
+
+td {
+    background-color: rgb(120, 156, 186);
+}
+
+button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: fit-content;
+    background-color: #e1ecf4;
+    border-radius: 3px;
+    border: 1px solid #7aa7c7;
+    box-shadow: rgba(255, 255, 255, 7) 0 1px 0 0 inset;
+    box-sizing: border-box;
+    color: #39739d;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    outline: none;
+    padding: 8px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+#nav-btn {
+    margin-top: 10px;
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+}
+
+#home-btns {
+    justify-content: space-evenly;
+}
