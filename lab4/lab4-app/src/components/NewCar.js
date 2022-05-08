@@ -20,7 +20,7 @@ export default function NewCar() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    timestamp: formData.timestamp,
+                    timestamp: new Date().toLocaleString("en-US"),
                     email: formData.email,
                     name: formData.name,
                     year: formData.year,
@@ -103,7 +103,7 @@ export default function NewCar() {
             {/* {cars.map(item => <h1>{item[1]}</h1>)} */}
 
             <form onSubmit={handleSubmit} style={{ margin: '0 auto', display: 'flex', flexDirection: 'column', width: '30%' }}>
-                <input onChange={handleChange} type='text' name='timestamp' placeholder='timestamp' />
+                <input onChange={handleChange} type='text' name='timestamp' placeholder='timestamp (will be determined when you submit form)' disabled="true"/>
                 <input onChange={handleChange} type='text' name='email' placeholder='email' />
                 <input onChange={handleChange} type='text' name='name' placeholder='name' />
                 <input onChange={handleChange} type='text' name='year' placeholder='year' />

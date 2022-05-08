@@ -29,11 +29,11 @@ export default function Home() {
         <>
         <h1>Welcome to the Cars Database</h1>
         <div id='home-btns'>
-        <button onClick={navigateAllCars}>Get all cars data</button>
-        <button onClick={navigateCarID}>Get cars via car id</button>
-        <button onClick={navigateCarMake}>Get cars via car make</button>
-        <button onClick={navigateNewData}>Add new car data</button>
-        <button onClick={navigateUpdateData}>Update car data</button>
+        <button onClick={navigateAllCars}>Get All Cars Data</button>
+        <button onClick={navigateCarID}>Get Cars Via Car ID</button>
+        <button onClick={navigateCarMake}>Get Cars Via Car Make</button>
+        <button onClick={navigateNewData}>Add New Car Data</button>
+        <button onClick={navigateUpdateData}>Update Car Cata</button>
         </div>
         </>
     )
