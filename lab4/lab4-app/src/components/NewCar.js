@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import '../styles/TableStyle.css'
+import '../styles/style.css'
 
 export default function NewCar() {
     const [cars, setCars] = useState([])

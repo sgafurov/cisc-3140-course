@@ -1,16 +1,18 @@
 import './App.css';
 import Home from './components/Home';
 import AllCars from './components/AllCars';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import CarID from './components/CarID';
 import CarMake from './components/CarMake'
 import NewCar from './components/NewCar';
 import UpdateCar from './components/UpdateCar';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <Navbar />
         <Routes className='routes'>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/all-cars" element={<AllCars />} />
