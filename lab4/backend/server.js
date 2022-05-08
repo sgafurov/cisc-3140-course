@@ -132,7 +132,15 @@ app.post("/api/cars/new", (req, res, next) => {
     })
 })
 
-app.patch("/api/cars/id/:car_id", (req, res, next) => {
+app.patch("/api/cars/update/:car_id", (req, res, next) => {
+    var errors = []
+    if (!req.body.car_id) {
+        errors.push("No car id specified");
+    }
+    if (errors.length) {
+        res.status(400).json({ "error": errors.join(",") });
+        return;
+    }
     var data = {
         timestamp: req.body.timestamp,
         email: req.body.email,
@@ -213,10 +221,17 @@ app.patch("/api/cars/id/:car_id", (req, res, next) => {
                 res.status(400).json({ "error": res.message })
                 return;
             }
-            res.json({
+            // res.status(200).json("Updated info")
+
+            // res.json({
+            //     message: "success",
+            //     data: data,
+            //     changes: this.changes
+            // })
+
+            res.status(200).json({
                 message: "success",
                 data: data,
-                changes: this.changes
             })
         });
 })

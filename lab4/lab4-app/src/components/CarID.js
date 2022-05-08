@@ -4,13 +4,9 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import '../styles/TableStyle.css'
 
-export default function CarID(props) {
+export default function CarID() {
     const [cars, setCars] = useState([])
     const [id, setID] = useState()
-
-    // useEffect(() => {
-    //     fetchData()
-    // }, [])
 
     const fetchData = async (e) => {
         try {

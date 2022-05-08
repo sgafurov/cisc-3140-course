@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CarID from './components/CarID';
 import CarMake from './components/CarMake'
 import NewCar from './components/NewCar';
+import UpdateCar from './components/UpdateCar';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/car-id" element={<CarID />} />
           <Route exact path="/car-make" element={<CarMake />} />
           <Route exact path="/new" element={<NewCar />} />
+          <Route exact path="/update" element={<UpdateCar />} />
         </Routes>
       </Router>
     </div>

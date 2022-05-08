@@ -3,19 +3,18 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import '../styles/TableStyle.css'
 
-export default function NewCar() {
+export default function UpdateCar() {
     const [cars, setCars] = useState([])
     const [formData, setFormData] = useState({
         timestamp: null, email: null, name: null, year: null, make: null, model: null, car_id: null, judge_id: null, judge_name: null, racer_turbo: null, racer_supercharged: null, racer_performance: null, racer_horsepower: null, car_overall: null, engine_modifications: null, engine_performance: null, engine_chrome: null, engine_detailing: null, engine_cleanliness: null, body_frame_undercarriage: null, body_frame_suspension: null, body_frame_chrome: null, body_frame_detailing: null, body_frame_cleanliness: null, mods_paint: null, mods_body: null, mods_wrap: null, mods_rims: null, mods_interior: null, mods_other: null, mods_ice: null, mods_aftermarket: null, mods_wip: null, mods_overall: null
     })
 
-    const postData = async () => {
+    const patchData = async () => {
         try {
             console.log(formData.car_id)
-            const data = { ...formData }
-            let res = await fetch("http://localhost:8080/api/cars/new", {
-                method: "POST",
-
+            // const data = { ...formData }
+            let res = await fetch(`http://localhost:8080/api/cars/update/${formData.car_id}`, {
+                method: "PATCH",
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -55,15 +54,10 @@ export default function NewCar() {
                     mods_wip: formData.mods_wip,
                     mods_overall: formData.mods_overall
                 }),
-
-
-                // body: JSON.stringify({ data }),
-                // body: JSON.stringify({ car_id: formData.car_id, name: formData.name })
-                // body: JSON.stringify({ car_id: '36363', name: 'molly' })
             });
 
             let resJson = await res.json();
-            console.log(resJson)
+            console.log('resJson',resJson)
 
             // const data = { ...formData }
             // const result = await axios.post(`http://localhost:8080/api/cars/new`, { data })
@@ -84,7 +78,8 @@ export default function NewCar() {
         newFormData[fieldName] = fieldValue;
         setFormData(newFormData);
 
-        postData()
+        patchData()
+
         console.log(formData)
     }
 
@@ -99,7 +94,7 @@ export default function NewCar() {
 
     return (
         <>
-            <h1>Add A New Car</h1>
+            <h1>Update A Car</h1>
             {/* {cars.map(item => <h1>{item[1]}</h1>)} */}
 
             <form onSubmit={handleSubmit} style={{ margin: '0 auto', display: 'flex', flexDirection: 'column', width: '30%' }}>

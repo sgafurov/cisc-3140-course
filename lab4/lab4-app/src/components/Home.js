@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Home() {
     let navigate = useNavigate()
-    // const [cars, setCars] = useState(null)
 
     const navigateAllCars = () => {
         navigate('/all-cars')
@@ -21,6 +20,10 @@ export default function Home() {
         navigate('/new')
     }
 
+    const navigateUpdateData = () => {
+        navigate('/update')
+    }
+
     return (
         <>
         <h1>Welcome to the Cars Database</h1>
@@ -28,8 +31,7 @@ export default function Home() {
         <button onClick={navigateCarID}>Get cars via car id</button>
         <button onClick={navigateCarMake}>Get cars via car make</button>
         <button onClick={navigateNewData}>Add new car data</button>
-        <h1>add a way to insert and update</h1>
-        <h1>look up how to organize it into a table format</h1>
+        <button onClick={navigateUpdateData}>Update car data</button>
         </>
     )
 }

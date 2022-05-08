@@ -3,12 +3,8 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import '../styles/TableStyle.css'
 
-export default function AllCars(props) {
+export default function AllCars() {
     const [cars, setCars] = useState([])
-
-    // useEffect(() => {
-    //     fetchData()
-    // }, [])
 
     const fetchData = async () => {
         try {
