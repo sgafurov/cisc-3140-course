@@ -66,10 +66,13 @@ app.get("/api/cars/make/:make", (req, res, next) => {
 });
 
 // INSERT A SINGLE NEW DATA RECORD
-app.post("/api/cars", (req, res, next) => {
+app.post("/api/cars/new", (req, res, next) => {
     var errors = []
     if (!req.body.car_id) {
         errors.push("No car id specified");
+    }
+    if (!req.body.name) {
+        errors.push("No name specified");
     }
     if (errors.length) {
         res.status(400).json({ "error": errors.join(",") });
@@ -121,10 +124,11 @@ app.post("/api/cars", (req, res, next) => {
             res.status(400).json({ "error": err.message })
             return;
         }
-        res.json({
-            "message": "success",
-            "data": data,
-        })
+        res.status(200).json("Added to db")
+        // res.json({
+        //     "message": "success",
+        //     "data": data,
+        // })
     })
 })
 
@@ -217,6 +221,6 @@ app.patch("/api/cars/id/:car_id", (req, res, next) => {
         });
 })
 
-app.listen(process.env.PORT || 8080, function(){
+app.listen(process.env.PORT || 8080, function () {
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-  });
+});
