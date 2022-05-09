@@ -136,7 +136,7 @@ export default function DeleteCar() {
                 </tbody>
             </table>
 
-            <button type='submit' onClick={deleteData}>Delete Car</button>
+            <button className='form-btn' type='submit' onClick={deleteData}>Delete Car</button>
         </>
     )
 }

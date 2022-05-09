@@ -21,7 +21,7 @@ export default function AllCars() {
         <>
             <h1>Get All Cars</h1>
 
-            <button onClick={fetchData}>Get all cars data</button>
+            <button className='form-btn' onClick={fetchData}>Get all cars data</button>
 
             <table>
                 <thead>
