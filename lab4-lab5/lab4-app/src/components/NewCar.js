@@ -64,6 +64,12 @@ export default function NewCar() {
 
             let resJson = await res.json();
             console.log(resJson)
+            
+            if(resJson=='Added to db'){
+                alert('Added to db')
+            } else {
+                alert(resJson.error)
+            }
 
             // const data = { ...formData }
             // const result = await axios.post(`http://localhost:8080/api/cars/new`, { data })

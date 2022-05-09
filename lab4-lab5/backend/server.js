@@ -70,9 +70,6 @@ app.post("/api/cars/new", (req, res, next) => {
     if (!req.body.car_id) {
         errors.push("No car id specified");
     }
-    if (!req.body.name) {
-        errors.push("No name specified");
-    }
     if (errors.length) {
         res.status(400).json({ "error": errors.join(",") });
         return;

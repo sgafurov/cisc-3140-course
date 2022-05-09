@@ -18,6 +18,7 @@ export default function DeleteCar() {
             });
             let resJson = await res.json();
             console.log(resJson)
+            alert('Deleted')
         } catch (err) {
             console.log(err.message)
         }
