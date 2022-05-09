@@ -1,4 +1,5 @@
 # Lab 4 🚗 🚙
+Lab 4 is a fullstack CRUD app that utilizes a frontend and backend to create, read, update, delete the entries in the cars database.
 
 # How to Start The App
 First, cd into lab4/backend and execute 'npm run devStart' to get the backend up and running. This will also make connection with sqlite database, create the table, and populate it.
