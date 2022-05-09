@@ -1,9 +1,9 @@
-# Lab 4 🚗 🚙
-Lab 4 is a fullstack CRUD app that utilizes a frontend and backend to create, read, update, delete the entries in the cars database.
+# Lab 4 / Lab 5 🚗 🚙
+Lab 4 and Lab 5 is a fullstack CRUD app that utilizes a frontend and backend to create, read, update, delete the entries in the cars database.
 
 # How to Start The App
-First, cd into lab4/backend and execute 'npm run devStart' to get the backend up and running. This will also make connection with sqlite database, create the table, and populate it.
-Then, cd into lab4/lab4-app and execute 'npm run start' to start the react app.
+First, cd into the backend folder and execute 'npm run devStart' to get the backend up and running. This will also make connection with sqlite database, create the table, and populate it.
+Then, cd into the lab4-app folder and execute 'npm run start' to start the react app.
 Now that both the frontend and backend are running, you can use the app.
 
 # Access the backend
