@@ -14,7 +14,6 @@ app.use(cors())
 
 app.get('/api', (req, res) => {
     res.json('welcome to the backend')
-    // ejs.r
 });
 
 // DISPLAY RESULTS OF SELECT ALL - I.e., all cars present in the CSV file, all the car owners contact information, showing results per class')
@@ -132,6 +131,7 @@ app.post("/api/cars/new", (req, res, next) => {
     })
 })
 
+// UPDATE A SINGLE DATA RECORD
 app.patch("/api/cars/update/:car_id", (req, res, next) => {
     var errors = []
     if (!req.body.car_id) {
@@ -236,17 +236,18 @@ app.patch("/api/cars/update/:car_id", (req, res, next) => {
         });
 })
 
+// DELETE A SINGLE DATA RECORD
 app.delete("/api/cars/delete/:car_id", (req, res, next) => {
     db.run(
         'DELETE FROM cars WHERE car_id = ?',
         req.params.car_id,
         function (err, result) {
-            if (err){
-                res.status(400).json({"error": res.message})
+            if (err) {
+                res.status(400).json({ "error": res.message })
                 return;
             }
-            res.status(200).json({"message":"deleted", changes: this.changes})
-    });
+            res.status(200).json({ "message": "deleted", changes: this.changes })
+        });
 })
 
 app.listen(process.env.PORT || 8080, function () {
