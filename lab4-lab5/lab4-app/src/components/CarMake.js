@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 import '../styles/style.css'
 
 export default function CarMake() {
@@ -21,7 +19,6 @@ export default function CarMake() {
 
             console.log('cars = ', cars)
             console.log('cars[0] = ', cars[0])
-            // navigate('/allCarsData')
         } catch (err) {
             console.log(err.message)
         }

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 import '../styles/style.css'
 
 export default function AllCars() {
@@ -14,7 +12,6 @@ export default function AllCars() {
             setCars(resultObjData)
             console.log('cars = ', cars)
             console.log('cars[0] = ', cars[0])
-            // navigate('/allCarsData')
         } catch (err) {
             console.log(err.message)
         }
@@ -23,7 +20,6 @@ export default function AllCars() {
     return (
         <>
             <h1>Get All Cars</h1>
-            {/* {cars.map(item => <h1>{item[1]}</h1>)} */}
 
             <button onClick={fetchData}>Get all cars data</button>
 

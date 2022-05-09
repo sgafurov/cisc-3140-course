@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 import '../styles/style.css'
 
 export default function UpdateCar() {
     const [cars, setCars] = useState([])
+    const [id, setID] = useState()
     const [formData, setFormData] = useState({
         timestamp: null, email: null, name: null, year: null, make: null, model: null, car_id: null, judge_id: null, judge_name: null, racer_turbo: null, racer_supercharged: null, racer_performance: null, racer_horsepower: null, car_overall: null, engine_modifications: null, engine_performance: null, engine_chrome: null, engine_detailing: null, engine_cleanliness: null, body_frame_undercarriage: null, body_frame_suspension: null, body_frame_chrome: null, body_frame_detailing: null, body_frame_cleanliness: null, mods_paint: null, mods_body: null, mods_wrap: null, mods_rims: null, mods_interior: null, mods_other: null, mods_ice: null, mods_aftermarket: null, mods_wip: null, mods_overall: null
     })
@@ -12,7 +11,6 @@ export default function UpdateCar() {
     const patchData = async () => {
         try {
             console.log(formData.car_id)
-            // const data = { ...formData }
             let res = await fetch(`http://localhost:8080/api/cars/update/${formData.car_id}`, {
                 method: "PATCH",
                 headers: {
@@ -57,14 +55,8 @@ export default function UpdateCar() {
             });
 
             let resJson = await res.json();
-            console.log('resJson',resJson)
-
-            // const data = { ...formData }
-            // const result = await axios.post(`http://localhost:8080/api/cars/new`, { data })
-            // const resultObj = await result.json()
-            // const resultObjData = resultObj.data
-            // console.log('cars = ', resultObj)
-            // console.log('cars[0] = ', cars[0])
+            console.log('resJson', resJson)
+            alert('Successfully updated')
         } catch (err) {
             console.log(err.message)
         }
@@ -92,52 +84,34 @@ export default function UpdateCar() {
         setFormData(newFormData);
     }
 
+    const fetchData = async (e) => {
+        try {
+            e.preventDefault()
+            const result = await fetch(`http://localhost:8080/api/cars/id/${id}`)
+            const resultObj = await result.json()
+            const resultObjData = resultObj.data
+            setCars(resultObjData)
+            console.log('id', id)
+            console.log('cars = ', cars)
+            console.log('cars[0] = ', cars[0])
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
+
     return (
         <>
             <h1>Update A Car</h1>
-            {/* {cars.map(item => <h1>{item[1]}</h1>)} */}
 
-            <form onSubmit={handleSubmit} style={{ margin: '0 auto', display: 'flex', flexDirection: 'column', width: '30%' }}>
-                <input onChange={handleChange} type='text' name='timestamp' placeholder='timestamp' />
-                <input onChange={handleChange} type='text' name='email' placeholder='email' />
-                <input onChange={handleChange} type='text' name='name' placeholder='name' />
-                <input onChange={handleChange} type='text' name='year' placeholder='year' />
-                <input onChange={handleChange} type='text' name='make' placeholder='make' />
-                <input onChange={handleChange} type='text' name='model' placeholder='model' />
-                <input onChange={handleChange} type='text' name='car_id' placeholder='car_id' required='required' />
-                <input onChange={handleChange} type='text' name='judge_id' placeholder='judge_id' />
-                <input onChange={handleChange} type='text' name='judge_name' placeholder='judge_name' />
-                <input onChange={handleChange} type='text' name='racer_turbo' placeholder='racer_turbo' />
-                <input onChange={handleChange} type='text' name='racer_supercharged' placeholder='racer_supercharged' />
-                <input onChange={handleChange} type='text' name='racer_performance' placeholder='racer_performance' />
-                <input onChange={handleChange} type='text' name='racer_horsepower' placeholder='racer_horsepower' />
-                <input onChange={handleChange} type='text' name='car_overall' placeholder='car_overall' />
-                <input onChange={handleChange} type='text' name='engine_modifications' placeholder='engine_modifications' />
-                <input onChange={handleChange} type='text' name='engine_performance' placeholder='engine_performance' />
-                <input onChange={handleChange} type='text' name='engine_chrome' placeholder='engine_chrome' />
-                <input onChange={handleChange} type='text' name='engine_detailing' placeholder='engine_detailing' />
-                <input onChange={handleChange} type='text' name='engine_cleanliness' placeholder='engine_cleanliness' />
-                <input onChange={handleChange} type='text' name='body_frame_undercarriage' placeholder='body_frame_undercarriage' />
-                <input onChange={handleChange} type='text' name='body_frame_suspension' placeholder='body_frame_suspension' />
-                <input onChange={handleChange} type='text' name='body_frame_chrome' placeholder='body_frame_chrome' />
-                <input onChange={handleChange} type='text' name='body_frame_detailing' placeholder='body_frame_detailing' />
-                <input onChange={handleChange} type='text' name='body_frame_cleanliness' placeholder='body_frame_cleanliness' />
-                <input onChange={handleChange} type='text' name='mods_paint' placeholder='mods_paint' />
-                <input onChange={handleChange} type='text' name='mods_body' placeholder='mods_body' />
-                <input onChange={handleChange} type='text' name='mods_wrap' placeholder='mods_wrap' />
-                <input onChange={handleChange} type='text' name='mods_rims' placeholder='mods_rims' />
-                <input onChange={handleChange} type='text' name='mods_interior' placeholder='mods_interior' />
-                <input onChange={handleChange} type='text' name='mods_other' placeholder='mods_other' />
-                <input onChange={handleChange} type='text' name='mods_ice' placeholder='mods_ice' />
-                <input onChange={handleChange} type='text' name='mods_aftermarket' placeholder='mods_aftermarket' />
-                <input onChange={handleChange} type='text' name='mods_wip' placeholder='mods_wip' />
-                <input onChange={handleChange} type='text' name='mods_overall' placeholder='mods_overall' />
-
-                <input type='submit' />
+            <form onSubmit={(e) => fetchData(e)}>
+                <label>
+                    Car ID:
+                    <input onChange={(e) => setID(e.target.value)} />
+                </label>
+                <input type="submit" value="Search" />
             </form>
 
-
-            {/* <table>
+            <table>
                 <thead>
                     <tr>
                         <th>Timestamp</th>
@@ -221,7 +195,49 @@ export default function UpdateCar() {
                         );
                     })}
                 </tbody>
-            </table> */}
+            </table>
+
+            <form onSubmit={handleSubmit} style={{ margin: '0 auto', display: 'flex', flexDirection: 'column', width: '30%' }}>
+                <input onChange={handleChange} type='text' name='timestamp' placeholder='timestamp' />
+                <input onChange={handleChange} type='text' name='email' placeholder='email' />
+                <input onChange={handleChange} type='text' name='name' placeholder='name' />
+                <input onChange={handleChange} type='text' name='year' placeholder='year' />
+                <input onChange={handleChange} type='text' name='make' placeholder='make' />
+                <input onChange={handleChange} type='text' name='model' placeholder='model' />
+                <input onChange={handleChange} type='text' name='car_id' placeholder='car_id' required='required' />
+                <input onChange={handleChange} type='text' name='judge_id' placeholder='judge_id' />
+                <input onChange={handleChange} type='text' name='judge_name' placeholder='judge_name' />
+                <input onChange={handleChange} type='text' name='racer_turbo' placeholder='racer_turbo' />
+                <input onChange={handleChange} type='text' name='racer_supercharged' placeholder='racer_supercharged' />
+                <input onChange={handleChange} type='text' name='racer_performance' placeholder='racer_performance' />
+                <input onChange={handleChange} type='text' name='racer_horsepower' placeholder='racer_horsepower' />
+                <input onChange={handleChange} type='text' name='car_overall' placeholder='car_overall' />
+                <input onChange={handleChange} type='text' name='engine_modifications' placeholder='engine_modifications' />
+                <input onChange={handleChange} type='text' name='engine_performance' placeholder='engine_performance' />
+                <input onChange={handleChange} type='text' name='engine_chrome' placeholder='engine_chrome' />
+                <input onChange={handleChange} type='text' name='engine_detailing' placeholder='engine_detailing' />
+                <input onChange={handleChange} type='text' name='engine_cleanliness' placeholder='engine_cleanliness' />
+                <input onChange={handleChange} type='text' name='body_frame_undercarriage' placeholder='body_frame_undercarriage' />
+                <input onChange={handleChange} type='text' name='body_frame_suspension' placeholder='body_frame_suspension' />
+                <input onChange={handleChange} type='text' name='body_frame_chrome' placeholder='body_frame_chrome' />
+                <input onChange={handleChange} type='text' name='body_frame_detailing' placeholder='body_frame_detailing' />
+                <input onChange={handleChange} type='text' name='body_frame_cleanliness' placeholder='body_frame_cleanliness' />
+                <input onChange={handleChange} type='text' name='mods_paint' placeholder='mods_paint' />
+                <input onChange={handleChange} type='text' name='mods_body' placeholder='mods_body' />
+                <input onChange={handleChange} type='text' name='mods_wrap' placeholder='mods_wrap' />
+                <input onChange={handleChange} type='text' name='mods_rims' placeholder='mods_rims' />
+                <input onChange={handleChange} type='text' name='mods_interior' placeholder='mods_interior' />
+                <input onChange={handleChange} type='text' name='mods_other' placeholder='mods_other' />
+                <input onChange={handleChange} type='text' name='mods_ice' placeholder='mods_ice' />
+                <input onChange={handleChange} type='text' name='mods_aftermarket' placeholder='mods_aftermarket' />
+                <input onChange={handleChange} type='text' name='mods_wip' placeholder='mods_wip' />
+                <input onChange={handleChange} type='text' name='mods_overall' placeholder='mods_overall' />
+
+                <input type='submit' />
+            </form>
+
+
+
         </>
     )
 }

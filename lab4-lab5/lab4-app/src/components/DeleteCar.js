@@ -34,7 +34,6 @@ export default function DeleteCar() {
             console.log('id', id)
             console.log('cars = ', cars)
             console.log('cars[0] = ', cars[0])
-            // navigate('/allCarsData')
         } catch (err) {
             console.log(err.message)
         }
@@ -137,10 +136,6 @@ export default function DeleteCar() {
                 </tbody>
             </table>
 
-
-            {/* <form onSubmit={deleteData} style={{ margin: '0 auto', display: 'flex', flexDirection: 'column', width: '30%' }}>
-                <input type="submit" value="Delete Car" />
-            </form> */}
             <button type='submit' onClick={deleteData}>Delete Car</button>
         </>
     )
