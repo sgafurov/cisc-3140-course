@@ -30,3 +30,5 @@ Update an existing record in the database. Access it by matching car id paramete
 ## DELETE:
 ### /api/cars/delete/:car_id
 Delete an existing record in the database. Access it by matching car id parameter. 
+
+![Figma demo of the navbar ](./figma-navbar.png)
