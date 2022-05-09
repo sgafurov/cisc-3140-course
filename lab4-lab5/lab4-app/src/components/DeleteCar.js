@@ -42,7 +42,7 @@ export default function DeleteCar() {
     return (
         <>
             <h1>Delete A Car</h1>
-            <form onSubmit={(e) => fetchData(e)}>
+            <form id='search-form' onSubmit={(e) => fetchData(e)}>
                 <label>
                     Car ID:
                     <input onChange={(e) => setID(e.target.value)} />

@@ -24,7 +24,7 @@ export default function CarID() {
         <>
             <h1>Get Car via Car ID</h1>
 
-            <form onSubmit={(e) => fetchData(e)}>
+            <form id='search-form' onSubmit={(e) => fetchData(e)}>
                 <label>
                     Car ID:
                     <input onChange={(e) => setID(e.target.value)} />

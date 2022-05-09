@@ -102,8 +102,9 @@ export default function UpdateCar() {
     return (
         <>
             <h1>Update A Car</h1>
+            <p>Only enter data into the table inputs that you want to change.</p>
 
-            <form onSubmit={(e) => fetchData(e)}>
+            <form id='search-form' onSubmit={(e) => fetchData(e)}>
                 <label>
                     Car ID:
                     <input onChange={(e) => setID(e.target.value)} />

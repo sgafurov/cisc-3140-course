@@ -28,7 +28,7 @@ export default function CarMake() {
         <>
             <h1>Get Car via Car Make</h1>
 
-            <form onSubmit={(e) => fetchData(e)}>
+            <form id='search-form' onSubmit={(e) => fetchData(e)}>
                 <label>
                     Car Make:
                     <input onChange={(e) => setMake(e.target.value)} />

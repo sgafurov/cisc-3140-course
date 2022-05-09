@@ -59,7 +59,7 @@ export default function NewCar() {
             console.log(resJson)
 
             if(resJson=='Added to db'){
-                alert('Added to db')
+                alert('Added to database')
             } else {
                 alert(resJson.error)
             }
